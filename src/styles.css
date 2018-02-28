@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'assets/css/reset.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+#container {
+  margin: 10px 0;
+}
+.align-middle {
+  vertical-align: middle;
+}
+.list-detail-card:hover {
+  outline: none;
+  background-color: aquamarine;
+}
+.clickable {
+  cursor: pointer;
+}

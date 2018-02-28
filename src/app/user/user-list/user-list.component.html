@@ -1,0 +1,23 @@
+<mat-spinner style="margin:0 auto;" *ngIf="!users"></mat-spinner>
+<div *ngIf="users">
+  <div fxLayout fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="5px">
+    <div class="blocks" fxFlex = "95%">
+      <h1 class="mat-h1">{{ title }}</h1>
+    </div>
+  </div>
+  <div fxLayout fxLayoutAlign="center">
+    <div class="blocks" fxFlex = "95%">
+      <mat-card>
+        <mat-list>
+          <mat-list-item class="list-detail-card clickable" *ngFor="let user of users" routerLink="/profile/{{user.id}}">
+            <img mat-list-avatar src="https://api.adorable.io/avatars/180/{{user.id}}.png" alt="{{user.id}}">
+            <h3 mat-line>{{user.name}}</h3>
+            <p mat-line>
+              <span># {{user.id}} - {{user.username}}, {{user.email}}</span>
+            </p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+  </div>
+</div>

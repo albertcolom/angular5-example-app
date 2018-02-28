@@ -1,0 +1,26 @@
+<mat-spinner style="margin:0 auto;" *ngIf="!posts.length"></mat-spinner>
+<div *ngIf="posts.length">
+  <div fxLayout fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="5px">
+    <div class="blocks" fxFlex = "95%">
+      <h1 class="mat-h1">{{title}} ({{ posts.length }} of {{totalPosts}})</h1>
+    </div>
+  </div>
+  <div fxLayout fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="5px">
+    <div class="blocks" fxFlex = "95%">
+      <mat-card>
+        <mat-list>
+          <mat-list-item class="list-detail-card clickable" *ngFor="let post of posts" (click)="openDialog(post)">
+            <img mat-list-avatar src="https://api.adorable.io/avatars/180/{{post.userId}}.png" alt="{{post.userId}}">
+            <h3 mat-line>#{{post.id}} {{post.title}}</h3>
+            <p mat-line>
+              <span>{{post.body}}</span>
+            </p>
+          </mat-list-item>
+        </mat-list>
+        <mat-spinner style="margin:0 auto;" diameter="20" *ngIf="loadingMore"></mat-spinner>
+        <button *ngIf="!allPosts" mat-raised-button (click)="getAllPostsUser()">All</button>
+        <button *ngIf="!allPosts" mat-raised-button (click)="getPaginatePosts()">More</button>
+      </mat-card>
+    </div>
+  </div>
+</div>
