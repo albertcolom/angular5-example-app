@@ -21,6 +21,7 @@ export class PostListUserComponent implements OnInit {
   pageLimit = 3;
   loadingMore = false;
   allPosts = false;
+  postBlur: number;
   constructor(private postService: PostService,
               private activatedRoute: ActivatedRoute,
               public dialog: MatDialog,
@@ -61,9 +62,11 @@ export class PostListUserComponent implements OnInit {
     });
   }
   removePost(postId: number): void {
+    this.postBlur = postId;
     this.postService.deletePostById(postId).subscribe(() => {
-      this.posts = this.posts.filter(hero => hero.id !== postId);
+      this.posts = this.posts.filter(post => post.id !== postId);
       this.snackBar.open('Post was removed', 'Ok', { duration: 2000 });
+      this.postBlur = null;
     });
   }
 }
