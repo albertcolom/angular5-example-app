@@ -14,13 +14,16 @@ export class PostService {
   getAllPost(): Observable<Post[]> {
     return this.http.get<Post[]>(this.postsUrl).retry(3);
   }
-  getAllPostsByUserId(userId: string): Observable<Post[]> {
+  getAllPostsByUserId(userId: number): Observable<Post[]> {
     return this.http.get<Post[]>(this.postsUrl + '?_sort=id&_order=desc&userId=' + userId).retry(3);
   }
-  getPostsByUserIdPaginateResponse(userId: string, page: number, limit: number): Observable<HttpResponse<Post[]>> {
+  getPostsByUserIdPaginateResponse(userId: number, page: number, limit: number): Observable<HttpResponse<Post[]>> {
     return this.http.get<Post[]>(
       this.postsUrl + '?_sort=id&_order=desc&_page=' + page + '&_limit=' + limit + '&userId=' + userId,
       {observe: 'response'}
     ).retry(3);
+  }
+  deletePostById(postId: number): Observable<Post[]> {
+    return this.http.delete<Post[]>(this.postsUrl + '/' + postId).retry(3);
   }
 }

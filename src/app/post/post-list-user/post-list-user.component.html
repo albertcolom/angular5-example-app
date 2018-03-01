@@ -1,26 +1,47 @@
-<mat-spinner style="margin:0 auto;" *ngIf="!posts.length"></mat-spinner>
-<div *ngIf="posts.length">
+<mat-spinner style="margin:0 auto;" *ngIf="!posts"></mat-spinner>
+<div *ngIf="posts">
   <div fxLayout fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="5px">
     <div class="blocks" fxFlex = "95%">
-      <h1 class="mat-h1">{{title}} ({{ posts.length }} of {{totalPosts}})</h1>
+      <h1 class="mat-h1">{{title}}</h1>
     </div>
   </div>
   <div fxLayout fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="5px">
     <div class="blocks" fxFlex = "95%">
-      <mat-card>
-        <mat-list>
-          <mat-list-item class="list-detail-card clickable" *ngFor="let post of posts" (click)="openDialog(post)">
-            <img mat-list-avatar src="https://api.adorable.io/avatars/180/{{post.userId}}.png" alt="{{post.userId}}">
-            <h3 mat-line>#{{post.id}} {{post.title}}</h3>
-            <p mat-line>
-              <span>{{post.body}}</span>
-            </p>
-          </mat-list-item>
-        </mat-list>
-        <mat-spinner style="margin:0 auto;" diameter="20" *ngIf="loadingMore"></mat-spinner>
-        <button *ngIf="!allPosts" mat-raised-button (click)="getAllPostsUser()">All</button>
-        <button *ngIf="!allPosts" mat-raised-button (click)="getPaginatePosts()">More</button>
+      <mat-card *ngFor="let post of posts">
+        <mat-card-header>
+          <div mat-card-avatar>
+            <img mat-card-avatar src="https://api.adorable.io/avatars/180/{{post.userId}}.png" alt="{{post.userId}}">
+          </div>
+          <div class="blocks" fxFlex = "100%">
+            <mat-card-title>{{post.title}}</mat-card-title>
+            <mat-card-subtitle># {{post.id}}</mat-card-subtitle>
+          </div>
+          <div class="blocks" fxFlex = "60px">
+            <div class="text-right">
+              <span matTooltip="Show"><mat-icon class="clickable" (click)="openDialog(post)">open_in_new</mat-icon></span>
+              <span matTooltip="Remove"><mat-icon class="clickable" (click)="removePost(post.id)">delete</mat-icon></span>
+            </div>
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{post.body}}
+          </p>
+        </mat-card-content>
       </mat-card>
+    </div>
+  </div>
+  <div class="post-list-footer-action" *ngIf="!allPosts" fxLayout fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="5px">
+    <div class="blocks" fxFlex = "40%">
+      <button mat-button (click)="getAllPostsUser()" [disabled]="loadingMore">View all Posts</button>
+    </div>
+    <div class="blocks" fxFlex = "12%">
+      <mat-spinner style="margin:0 auto;" diameter="20" *ngIf="loadingMore"></mat-spinner>
+    </div>
+    <div class="blocks" fxFlex = "40%" class="text-right">
+      <button mat-mini-fab color="primary" matTooltip="View more" [disabled]="loadingMore" (click)="getPaginatePosts()">
+        <mat-icon>expand_more</mat-icon>
+      </button>
     </div>
   </div>
 </div>
