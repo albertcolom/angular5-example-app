@@ -7,6 +7,9 @@
   </div>
   <div fxLayout fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="5px">
     <div class="blocks" fxFlex = "95%">
+      <div *ngIf="posts.length === 0">
+        <h3 class="mat-h3">No content</h3>
+      </div>
       <mat-card *ngFor="let post of posts" [ngClass]="{'blur': postBlur === post.id}">
         <mat-card-header>
           <div mat-card-avatar>
@@ -31,8 +34,8 @@
       </mat-card>
     </div>
   </div>
-  <div class="post-list-footer-action" *ngIf="!allPosts" fxLayout fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="5px">
-    <div class="blocks" fxFlex = "40%">
+  <div class="post-list-footer-action" *ngIf="!allPosts && posts.length !== 0" fxLayout fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="5px">
+    <div class="blocks" fxFlex = "40%" >
       <button mat-button (click)="getAllPostsUser()" [disabled]="loadingMore">View all Posts</button>
     </div>
     <div class="blocks" fxFlex = "12%">
