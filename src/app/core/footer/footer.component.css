@@ -1,0 +1,10 @@
+footer {
+  position: sticky;
+  top: 100%;
+}
+img.angular {
+  height: 35px;
+}
+footer span.date {
+  font-size: small;
+}

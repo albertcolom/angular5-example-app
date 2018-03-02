@@ -1,1 +1,12 @@
-<mat-toolbar color='secondary'>...</mat-toolbar>
+<footer>
+  <mat-toolbar>
+    <div fxFlex fxLayoutAlign="center center" class.xs="footer-xs">
+      <div class="blocks" fxFlex = "50%">
+        <img  class="angular" src="assets/images/angular-3.svg"/>
+      </div>
+      <div class="blocks text-right" fxFlex = "45%">
+        <span class="date">{{ today | date:'fullDate'}}</span>
+      </div>
+    </div>
+  </mat-toolbar>
+</footer>

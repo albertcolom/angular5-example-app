@@ -1,7 +1,17 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>MyApp</span>
-    <button mat-button routerLink="/">Home</button>
-    <button mat-button routerLink="/users">Users</button>
-  </mat-toolbar-row>
-</mat-toolbar>
+<header>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <div class="blocks" fxFlex = "50%">
+        <button mat-button routerLink="/"><mat-icon>home</mat-icon> Home</button>
+        <button mat-button routerLink="/users"><mat-icon>account_circle</mat-icon> Users</button>
+      </div>
+      <div class="blocks text-right" fxFlex = "50%">
+        <a href="https://github.com/albertcolom/angular5-example-app" target="_blank">
+          <button mat-icon-button matTooltip="View on GitHub" [matTooltipPosition]="'before'">
+            <img src="assets/images/github-circle-white-transparent.svg"/>
+          </button>
+        </a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>
